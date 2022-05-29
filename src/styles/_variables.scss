@@ -1,0 +1,33 @@
+$colors: (
+  'background': #1a1c1f,
+  'background-alt': #f8f8f8,
+  'heading': #fafcff,
+  'text': #cacccf,
+  'text-alt': #7a7c7f,
+  'border': #3a3c3f,
+  'primary': #7f77e0,
+);
+
+$breakpoints: (
+  'xs': 0,
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px,
+  'xl': 1200px,
+);
+
+@function color($key) {
+  @return map-get($colors, $key);
+}
+
+@mixin breakpoint-min($key) {
+  @media screen and (min-width: map-get($breakpoints, $key)) {
+    @content;
+  }
+}
+
+@mixin breakpoint-max($key) {
+  @media screen and (max-width: map-get($breakpoints, $key)) {
+    @content;
+  }
+}

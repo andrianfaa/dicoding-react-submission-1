@@ -1,0 +1,64 @@
+.dropable-container {
+  border: 1px dashed transparent;
+  min-height: 400px;
+
+  &.drag-over {
+    border-color: color('primary');
+  }
+}
+
+.dragable-card {
+  padding: 1rem 1rem 0;
+  border-radius: 0.25rem;
+  border: 1px solid color('border');
+  width: 100%;
+
+  @include breakpoint-min('sm') {
+    width: calc(50% - 1rem);
+  }
+
+  &.dragging {
+    border-color: color('primary');
+    background-color: color('background');
+  }
+
+  &--body {
+    height: 290px;
+
+    &__date {
+      display: block;
+      margin: 0.3rem 0;
+    }
+
+    &__text {
+      display: -webkit-box;
+      line-clamp: 8;
+      overflow: hidden;
+      -webkit-line-clamp: 8;
+      -webkit-box-orient: vertical;
+      text-overflow: ellipsis;
+    }
+  }
+
+  &--buttons {
+    border-top: 1px solid color('border');
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+
+    > button {
+      background-color: transparent;
+      border: none;
+      width: 100%;
+      cursor: pointer;
+      padding: 1rem 0;
+      font-weight: 600;
+      color: color('primary');
+
+      &.delete {
+        color: #ff4444;
+      }
+    }
+  }
+}
