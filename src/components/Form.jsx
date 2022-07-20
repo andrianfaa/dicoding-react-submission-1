@@ -10,8 +10,8 @@ export default function Form({
 
   const handleOnChange = (event) => {
     const { name, value } = event.target;
-    // eslint-disable-next-line prefer-regex-literals
-    const pattern = new RegExp(/^[a-zA-Z0-9 ]*$/);
+    const regex = /^[a-zA-Z0-9 ]*$/;
+    const pattern = new RegExp(regex);
 
     if (name === "title" && value.length > 50) return;
 
@@ -25,6 +25,8 @@ export default function Form({
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
+
+    if (formData.title.length === 0 || formData.note.length === 0) return;
 
     onSubmit(formData.title, formData.note);
   };
@@ -55,7 +57,13 @@ export default function Form({
         onChange={handleOnChange}
       />
 
-      <button type="submit" className="button">Simpan</button>
+      <button
+        type="submit"
+        className="button"
+        disabled={formData.title.length === 0 || formData.note.length === 0}
+      >
+        Simpan
+      </button>
     </form>
   );
 }

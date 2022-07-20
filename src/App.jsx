@@ -102,6 +102,25 @@ export default function App() {
     setIsFormOpen(false);
   };
 
+  const containers = [
+    {
+      title: "Active Notes",
+      moveButtonText: "Arsipkan",
+      onDrop: handleOnDrop,
+      notes: filteredActiveNotes,
+      onClickDelete: handleClickDelete,
+      onClickMove: handleClickMove,
+    },
+    {
+      title: "Archive Notes",
+      moveButtonText: "Aktifkan",
+      onDrop: handleOnDrop,
+      notes: filteredArchiveNotes,
+      onClickDelete: handleClickDelete,
+      onClickMove: handleClickMove,
+    },
+  ];
+
   return (
     <>
       <Navbar onInputChange={handleOnSearch} inputValue={keyword} />
@@ -120,23 +139,19 @@ export default function App() {
       </div>
 
       <div className="layout">
-        <Container
-          title="Active Notes"
-          moveButtonText="Arsipkan"
-          onDrop={handleOnDrop}
-          notes={filteredActiveNotes}
-          onClickDelete={handleClickDelete}
-          onClickMove={handleClickMove}
-        />
-
-        <Container
-          title="Archive Notes"
-          moveButtonText="Aktifkan"
-          onDrop={handleOnDrop}
-          notes={filteredArchiveNotes}
-          onClickDelete={handleClickDelete}
-          onClickMove={handleClickMove}
-        />
+        {containers.map(({
+          title, moveButtonText, onDrop, onClickDelete, onClickMove, notes: containerNotes,
+        }) => (
+          <Container
+            key={Math.random() * 100}
+            title={title}
+            moveButtonText={moveButtonText}
+            onDrop={onDrop}
+            notes={containerNotes}
+            onClickDelete={onClickDelete}
+            onClickMove={onClickMove}
+          />
+        ))}
       </div>
     </>
   );
